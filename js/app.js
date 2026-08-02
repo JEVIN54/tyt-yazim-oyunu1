@@ -86,7 +86,17 @@ const el = {
   finalCorrectDisplay: document.getElementById('finalCorrectDisplay'),
   finalWrongDisplay: document.getElementById('finalWrongDisplay'),
   restartGameBtn: document.getElementById('restartGameBtn'),
-  homeBtn: document.getElementById('homeBtn')
+  homeBtn: document.getElementById('homeBtn'),
+
+  // YKS 2027 Cevap Anahtarı (Şaka)
+  answerKeyBtn: document.getElementById('answerKeyBtn'),
+  answerKeyModal: document.getElementById('answerKeyModal'),
+  closeAnswerKeyBtn: document.getElementById('closeAnswerKeyBtn'),
+  reshuffleAnswerKeyBtn: document.getElementById('reshuffleAnswerKeyBtn'),
+  turkceTable: document.getElementById('turkceTable'),
+  matematikTable: document.getElementById('matematikTable'),
+  sosyalTable: document.getElementById('sosyalTable'),
+  fenTable: document.getElementById('fenTable')
 };
 
 let selectedAvatar = '🎓';
@@ -311,6 +321,25 @@ function setupEventListeners() {
   el.homeBtn.addEventListener('click', () => {
     soundManager.playClick();
     showHome();
+  });
+
+  // YKS 2027 TYT CEVAP ANAHTARI (ŞAKA)
+  el.answerKeyBtn.addEventListener('click', () => {
+    soundManager.playClick();
+    generateAndRenderAnswerKey();
+    el.answerKeyModal.classList.remove('hidden');
+    el.answerKeyModal.classList.add('flex');
+  });
+
+  el.closeAnswerKeyBtn.addEventListener('click', () => {
+    soundManager.playClick();
+    el.answerKeyModal.classList.add('hidden');
+    el.answerKeyModal.classList.remove('flex');
+  });
+
+  el.reshuffleAnswerKeyBtn.addEventListener('click', () => {
+    soundManager.playClick();
+    generateAndRenderAnswerKey();
   });
 }
 
@@ -913,3 +942,45 @@ async function loadAndShowComments() {
 
 // Uygulamayı Başlat
 document.addEventListener('DOMContentLoaded', init);
+
+// ============================================================
+// YKS 2027 TYT CEVAP ANAHTARI (ŞAKA — RASTGELE ÜRETİCİ)
+// ============================================================
+
+const SIKU = ['A', 'B', 'C', 'D', 'E'];
+
+function generateAnswers(count) {
+  return Array.from({ length: count }, () => SIKU[Math.floor(Math.random() * SIKU.length)]);
+}
+
+const DERS_RENK = {
+  turkce:    { soru: 'text-cyan-400',    bg: 'bg-cyan-950/40',    border: 'border-cyan-500/30'   },
+  matematik: { soru: 'text-purple-400',  bg: 'bg-purple-950/40',  border: 'border-purple-500/30' },
+  sosyal:    { soru: 'text-amber-400',   bg: 'bg-amber-950/40',   border: 'border-amber-500/30'  },
+  fen:       { soru: 'text-emerald-400', bg: 'bg-emerald-950/40', border: 'border-emerald-500/30'}
+};
+
+const SIKU_RENK = {
+  A: 'text-cyan-300',
+  B: 'text-purple-300',
+  C: 'text-amber-300',
+  D: 'text-rose-300',
+  E: 'text-emerald-300'
+};
+
+function renderAnswerTable(container, answers, startNum, dersKey) {
+  const renk = DERS_RENK[dersKey];
+  container.innerHTML = answers.map((ans, i) => `
+    <div class="flex flex-col items-center ${renk.bg} border ${renk.border} rounded-xl py-2 px-1">
+      <span class="text-[10px] font-bold ${renk.soru} mb-1">${startNum + i}</span>
+      <span class="text-base font-black ${SIKU_RENK[ans]}">${ans}</span>
+    </div>
+  `).join('');
+}
+
+function generateAndRenderAnswerKey() {
+  renderAnswerTable(el.turkceTable,    generateAnswers(40), 1,   'turkce');
+  renderAnswerTable(el.matematikTable, generateAnswers(40), 41,  'matematik');
+  renderAnswerTable(el.sosyalTable,    generateAnswers(20), 81,  'sosyal');
+  renderAnswerTable(el.fenTable,       generateAnswers(20), 101, 'fen');
+}

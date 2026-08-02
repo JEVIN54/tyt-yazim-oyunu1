@@ -65,6 +65,11 @@
           ❌ Yanlışlarım
         </button>
 
+        <!-- YKS 2027 CEVAP ANAHTARI (ŞAKA) -->
+        <button id="answerKeyBtn" class="btn-secondary py-1.5 px-3 text-xs md:text-sm text-yellow-300 border-yellow-500/30 hover:border-yellow-400 font-bold">
+          📋 YKS 2027 Cevap Anahtarı
+        </button>
+
         <!-- Yorumlar & Öneriler Butonu -->
         <button id="commentsBtn" class="btn-secondary py-1.5 px-3 text-xs md:text-sm">
           💬 Yorum / Öneri
@@ -630,6 +635,78 @@
           <p>Özel adlara, sayılara ve kısaltmalara gelen çekim ekleri ayrılır. **Kurum, kuruluş adlarına ve yapım eklerine gelen ekler KESMEYLE AYRILMAZ!**</p>
         </div>
 
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MODAL 6: YKS 2027 TYT CEVAP ANAHTARI (ŞAKA MOD 😄) -->
+  <div id="answerKeyModal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="glass-modal max-w-4xl w-full p-6 md:p-8 space-y-5 max-h-[92vh] flex flex-col border border-yellow-500/40">
+
+      <!-- BAŞLIK -->
+      <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+        <div class="flex items-center gap-3">
+          <span class="text-3xl">📋</span>
+          <div>
+            <h3 class="text-xl font-black font-heading text-yellow-300">YKS 2027 — TYT Cevap Anahtarı</h3>
+            <p class="text-xs text-slate-400">Ölçme, Seçme ve Yerleştirme Merkezi (ÖSYM) • Kesinleşmiş Sonuçlar</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <button id="reshuffleAnswerKeyBtn" class="btn-secondary text-xs py-1.5 px-3 text-yellow-300 border-yellow-500/30">
+            🔀 Yeniden Karıştır
+          </button>
+          <button id="closeAnswerKeyBtn" class="text-slate-400 hover:text-white text-2xl font-bold p-1">✕</button>
+        </div>
+      </div>
+
+      <!-- RESMİ UYARI BANDI -->
+      <div class="bg-yellow-950/50 border border-yellow-500/40 rounded-xl px-4 py-3 flex items-center gap-3">
+        <span class="text-2xl">⚠️</span>
+        <p class="text-xs text-yellow-200 font-semibold">Bu cevap anahtarı tamamen şaka amaçlıdır. Gerçek YKS 2027 sınavı henüz gerçekleşmemiştir. Şıklar rastgele oluşturulmuştur. 😄</p>
+      </div>
+
+      <!-- CEVAP TABLOSU -->
+      <div class="overflow-y-auto flex-grow pr-1 space-y-6">
+
+        <!-- TÜRKÇE -->
+        <div>
+          <div class="flex items-center gap-2 mb-3">
+            <span class="bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 text-xs font-bold px-3 py-1 rounded-full">📖 TÜRKÇE — 40 Soru</span>
+          </div>
+          <div id="turkceTable" class="grid grid-cols-5 md:grid-cols-10 gap-2"></div>
+        </div>
+
+        <!-- MATEMATİK -->
+        <div>
+          <div class="flex items-center gap-2 mb-3">
+            <span class="bg-purple-500/20 text-purple-400 border border-purple-500/30 text-xs font-bold px-3 py-1 rounded-full">📐 MATEMATİK — 40 Soru</span>
+          </div>
+          <div id="matematikTable" class="grid grid-cols-5 md:grid-cols-10 gap-2"></div>
+        </div>
+
+        <!-- SOSYAL BİLİMLER -->
+        <div>
+          <div class="flex items-center gap-2 mb-3">
+            <span class="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-bold px-3 py-1 rounded-full">🌍 SOSYAL BİLİMLER — 20 Soru</span>
+          </div>
+          <div id="sosyalTable" class="grid grid-cols-5 md:grid-cols-10 gap-2"></div>
+        </div>
+
+        <!-- FEN BİLİMLERİ -->
+        <div>
+          <div class="flex items-center gap-2 mb-3">
+            <span class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-bold px-3 py-1 rounded-full">🔬 FEN BİLİMLERİ — 20 Soru</span>
+          </div>
+          <div id="fenTable" class="grid grid-cols-5 md:grid-cols-10 gap-2"></div>
+        </div>
+
+      </div>
+
+      <!-- ALT BİLGİ -->
+      <div class="border-t border-slate-800 pt-3 text-center">
+        <p class="text-[11px] text-slate-500">Bu belge gerçek bir ÖSYM belgesi değildir • TYT Türkçe Yazım Arenası — Şaka Cevap Anahtarı Üretici v2027</p>
       </div>
 
     </div>
